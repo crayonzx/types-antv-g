@@ -27,9 +27,10 @@ function rimraf(dir_path) {
 console.log('Clearing lib folder...');
 rimraf('./lib');
 
-const cmd = `npx tsc --outDir ${OUT_DIR} > z:/log.txt`;
+const cmd = `npx tsc --outDir ${OUT_DIR}`;
+
 console.log('Compiling definition files...');
 console.log(`>>> ${cmd}`);
-exec(cmd, { cwd: CWD });
-
-console.log('Done building.')
+exec(cmd, { cwd: CWD }, function callback() {
+  console.log('Done building.')
+});

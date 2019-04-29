@@ -15,18 +15,6 @@ declare const Polyline2: (new (cfg: any) => {
     off: (evt: any, callback: any) => any;
     removeEvent: (evt: any) => any;
     _getEvents: () => any;
-    _cfg: {
-        id: number;
-        zIndex: number;
-        canvas: any;
-        parent: any;
-        capture: boolean;
-        context: any;
-        visible: boolean;
-        destroyed: boolean;
-    } & {
-        box: GCommon.BBox;
-    };
     canFill: boolean;
     initAttrs: (attrs: any) => any;
     attr: import("../core/mixin/attribute").IAttr;
@@ -67,6 +55,18 @@ declare const Polyline2: (new (cfg: any) => {
     _setAttrs: (attrs: any) => any;
     setZIndex: (zIndex: number) => any;
     getBBox: (this: Shape) => GCommon.BBox;
+    _cfg: {
+        id: number;
+        zIndex: number;
+        canvas: any;
+        parent: any;
+        capture: boolean;
+        context: any;
+        visible: boolean;
+        destroyed: boolean;
+    } & {
+        box: GCommon.BBox;
+    };
     isPointInPath: (x: number, y: number) => any;
     isShape: boolean;
     drawInner: (context: any) => void;

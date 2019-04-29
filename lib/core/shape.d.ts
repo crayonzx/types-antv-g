@@ -13,16 +13,6 @@ declare const Shape2: (new (cfg: any) => {
     off: (evt: any, callback: any) => any;
     removeEvent: (evt: any) => any;
     _getEvents: () => any;
-    _cfg: {
-        id: number;
-        zIndex: number;
-        canvas: any;
-        parent: any;
-        capture: boolean;
-        context: any;
-        visible: boolean;
-        destroyed: boolean;
-    };
     canFill: boolean;
     canStroke: boolean;
     initAttrs: (attrs: any) => any;
@@ -62,6 +52,16 @@ declare const Shape2: (new (cfg: any) => {
     _beforeSetZIndex: (zIndex: number) => number;
     _setAttrs: (attrs: any) => any;
     setZIndex: (zIndex: number) => any;
+    _cfg: {
+        id: number;
+        zIndex: number;
+        canvas: any;
+        parent: any;
+        capture: boolean;
+        context: any;
+        visible: boolean;
+        destroyed: boolean;
+    };
 } & {
     isPointInPath(x: number, y: number): any;
 } & {

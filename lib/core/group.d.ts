@@ -22,16 +22,6 @@ declare const Group2: (new (cfg?: Partial<{
     off: (evt: any, callback: any) => any;
     removeEvent: (evt: any) => any;
     _getEvents: () => any;
-    _cfg: {
-        id: number;
-        zIndex: number;
-        canvas: any;
-        parent: any;
-        capture: boolean;
-        context: any;
-        visible: boolean;
-        destroyed: boolean;
-    };
     initAttrs: (attrs: any) => any;
     getDefaultAttrs: () => {};
     attr: import("./mixin/attribute").IAttr;
@@ -68,6 +58,16 @@ declare const Group2: (new (cfg?: Partial<{
     _beforeSetZIndex: (zIndex: number) => number;
     _setAttrs: (attrs: any) => any;
     setZIndex: (zIndex: number) => any;
+    _cfg: {
+        id: number;
+        zIndex: number;
+        canvas: any;
+        parent: any;
+        capture: boolean;
+        context: any;
+        visible: boolean;
+        destroyed: boolean;
+    };
 } & {
     isGroup: boolean;
     type: string;
@@ -77,13 +77,13 @@ declare const Group2: (new (cfg?: Partial<{
     _beforeRenderUI(): void;
     _renderUI(): void;
     _bindUI(): void;
-    addShape: IAddShape;
+    addShape(type: any, cfg: any): any;
     /** 添加图组
      * @param  {Function|Object|undefined} param 图组类
      * @param  {Object} cfg 配置项
      * @return {Object} rst 图组
      */
-    addGroup: IAddGroup;
+    addGroup(param: any, cfg: any): any;
     /** 绘制背景
      * @param  {Array} padding 内边距
      * @param  {Attrs} attrs 图形属性

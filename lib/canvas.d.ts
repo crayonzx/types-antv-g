@@ -122,16 +122,6 @@ declare const Canvas2: (new (cfg?: Partial<{
     off: (evt: any, callback: any) => any;
     removeEvent: (evt: any) => any;
     _getEvents: () => any;
-    _cfg: {
-        id: number;
-        zIndex: number;
-        canvas: any;
-        parent: any;
-        capture: boolean;
-        context: any;
-        visible: boolean;
-        destroyed: boolean;
-    };
     canFill: boolean;
     canStroke: boolean;
     initAttrs: (attrs: any) => any;
@@ -172,6 +162,16 @@ declare const Canvas2: (new (cfg?: Partial<{
     _setAttrs: (attrs: any) => any;
     setZIndex: (zIndex: number) => any;
     getBBox: () => Required<GCommon.BBox>;
+    _cfg: {
+        id: number;
+        zIndex: number;
+        canvas: any;
+        parent: any;
+        capture: boolean;
+        context: any;
+        visible: boolean;
+        destroyed: boolean;
+    };
     type: string;
     sort: () => any;
     find: (fn: any) => any;

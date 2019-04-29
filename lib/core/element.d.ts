@@ -135,9 +135,9 @@ declare const Element1: (new (cfg?: Partial<{
      * @return {Object} 默认的属性
      */
     getDefaultCfg(): {};
-    set: ISet;
+    set(name: any, value: any): any;
     setSilent(name: any, value: any): void;
-    get: IGet;
+    get(name: any): any;
     show(): any;
     hide(): any;
     remove(destroy?: boolean, delayRemove?: boolean): any;

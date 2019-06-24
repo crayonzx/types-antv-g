@@ -22,11 +22,11 @@ declare const _default: {
     };
     isEqual: (value: any, other: any) => boolean;
     toArray: (value: any) => any[];
-    extend: <T extends GUtil.TwoFunctionTypes, U extends GUtil.NewFunctionType, V, W>(subclass: T, superclass: U, overrides?: V, staticOverrides?: W) => { [P in keyof GUtil.ToClassType<T>]: GUtil.ToClassType<T>[P]; } & {
+    extend: <T extends GUtil.TwoFunctionTypes, U extends GUtil.NewFunctionType, V, W>(subclass: T, superclass: U, overrides?: V, staticOverrides?: W) => { [P in Exclude<keyof GUtil.ToClassType<T>, never>]: GUtil.ToClassType<T>[P]; } & {
         new (...args: GUtil.ArgsType<GUtil.ToClassType<T>>): GUtil._Overwrite<GUtil._Overwrite<GUtil.NewReturnType<U>, GUtil.NewReturnType<GUtil.ToClassType<T>>>, V>;
         superclass: U;
-    } & { [P in keyof (W extends null ? {} : W)]: (W extends null ? {} : W)[P]; };
-    augment: <T extends GUtil.TwoFunctionTypes, U extends any[]>(dist: T, ...src: U) => (new (...args: GUtil.ArgsType<GUtil.ToClassType<T>>) => GUtil._Overwrite<GUtil.ProtoType<GUtil.ToClassType<T>>, GUtil.UnionToIntersection<GUtil.ProtoType<U extends (infer V)[] ? V : never>>>) & { [P in keyof GUtil.ToClassType<T>]: GUtil.ToClassType<T>[P]; };
+    } & { [P in Exclude<keyof (W extends null ? {} : W), never>]: (W extends null ? {} : W)[P]; };
+    augment: <T extends GUtil.TwoFunctionTypes, U extends any[]>(dist: T, ...src: U) => (new (...args: GUtil.ArgsType<GUtil.ToClassType<T>>) => GUtil._Overwrite<GUtil.ProtoType<GUtil.ToClassType<T>>, GUtil.UnionToIntersection<GUtil.ProtoType<U extends (infer V)[] ? V : never>>>) & { [P in Exclude<keyof GUtil.ToClassType<T>, never>]: GUtil.ToClassType<T>[P]; };
     remove: (arr: any, ...args: any[]) => any;
     isNumberEqual: (a: number, b: number) => boolean;
     toRadian: (degree: number) => number;

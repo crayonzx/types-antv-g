@@ -30,8 +30,9 @@
     "url": "https://github.com/crayonzx/types-antv-g.git"
   },
   "scripts": {
-    "build": "node build.js",
-    "prepublishOnly": "yarn build"
+    "clear": "rimraf lib",
+    "build": "node build.js && copyfiles -u 1 tmp/**/* lib && rimraf tmp",
+    "prepublishOnly": "yarn clear && yarn build"
   },
   "dependencies": {
     "@types/antv__util": "^1.0.0"

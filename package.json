@@ -1,6 +1,6 @@
 {
   "name": "@types/antv__g",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "TypeScript definitions for @antv/g",
   "license": "MIT",
   "contributors": [
@@ -31,11 +31,11 @@
   },
   "scripts": {
     "clear": "rimraf lib",
-    "build": "node build.js && copyfiles -u 1 tmp/**/* lib && rimraf tmp",
+    "build": "rimraf tmp && node build.js && copyfiles -u 1 tmp/**/* lib",
     "prepublishOnly": "yarn clear && yarn build"
   },
   "dependencies": {
-    "@types/antv__util": "^1.0.0"
+    "@types/antv__util": "^1.0.2"
   },
   "typesPublisherContentHash": "",
   "typeScriptVersion": "3.0"

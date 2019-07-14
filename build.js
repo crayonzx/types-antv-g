@@ -17,22 +17,29 @@ try {
   buffer = execSync(command, { cwd: workingDir });
 } catch (error) {
   if (error.stdout && error.stderr) {
-    console.log(error.stdout.toString());
+    // console.log(error.stdout.toString());
+
+    const stdoutArray = error.stdout.toString().split('\n');
+
+    stdoutArray.forEach((s) => {
+      if (!s.includes('error TS1005') && !s.includes('error TS1068')) {
+        console.log(s);
+      }
+    });
+
     console.log(error.stderr.toString());
 
-    error.stdout
-      .toString()
-      .split('\n')
-      .forEach((s) => {
-        if (
-          s.includes('TS4023') ||
-          s.includes('TS4082') ||
-          s.includes('TS5055') ||
-          s.includes('private')
-        ) {
-          throw new Error(s);
-        }
-      });
+    stdoutArray.forEach((s) => {
+      if (
+        s.includes('TS2506') ||
+        s.includes('TS4023') ||
+        s.includes('TS4082') ||
+        s.includes('TS5055') ||
+        s.includes('private')
+      ) {
+        throw new Error(s);
+      }
+    });
   } else {
     console.log(error);
   }

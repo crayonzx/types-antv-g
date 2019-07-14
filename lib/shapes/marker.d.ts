@@ -4,7 +4,11 @@ import Shape = require('../core/shape');
 declare class Marker extends Shape {
     constructor(cfg: any);
     static Symbols: {
-        [x in Marker.Symbols]: Marker.SymbolPathFunc;
+        circle: Marker.SymbolPathFunc;
+        square: Marker.SymbolPathFunc;
+        diamond: Marker.SymbolPathFunc;
+        triangle: Marker.SymbolPathFunc;
+        'triangle-down': Marker.SymbolPathFunc;
     };
     static ATTRS: {
         path: any;
@@ -39,7 +43,7 @@ declare class Marker extends Shape {
 }
 export = Marker;
 declare namespace Marker {
-    type Symbols = 'circle' | 'square' | 'diamond' | 'triangle' | 'triangle-down';
+    type Symbols = keyof typeof Marker.Symbols;
     type SymbolPathFunc = (x: number, y: number, r: number) => Common.SVGPath;
     type SymbolsAttr = Symbols | SymbolPathFunc;
 }

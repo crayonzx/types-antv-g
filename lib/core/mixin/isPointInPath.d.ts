@@ -1,4 +1,5 @@
-declare const _default: {
-    isPointInPath(x: number, y: number): any;
+declare const Mixin: {
+    isPointInPath(x: number, y: number): boolean;
 };
-export = _default;
+export = Mixin;
+declare type Mixin = typeof Mixin;

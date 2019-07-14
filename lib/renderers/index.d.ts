@@ -3,3 +3,4 @@ declare const Renderers: {
     svg: typeof import('./svg');
 };
 export = Renderers;
+declare type Renderers = typeof Renderers;

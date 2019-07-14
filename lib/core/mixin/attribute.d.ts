@@ -1,8 +1,10 @@
-declare const Attr: {
+declare const Mixin: {
     canFill: boolean;
     canStroke: boolean;
     initAttrs(attrs: any): any;
-    getDefaultAttrs(): {};
+    getDefaultAttrs<T extends {
+        _attrs: any;
+    }>(this: T): T["_attrs"];
     /**
      * 设置或者设置属性，有以下 4 种情形：
      *   - name 不存在, 则返回属性集合
@@ -14,15 +16,17 @@ declare const Attr: {
      * @param  {*} value 属性值
      * @return {*} 属性值
      */
-    attr: Attr.IAttr;
+    attr: Mixin.IAttr;
     _setAttr(name: any, value: any): void;
     clearBBox(): void;
     hasFill(): any;
     hasStroke(): any;
     _setClip(item: any): void;
 };
-export = Attr;
-declare namespace Attr {
+export = Mixin;
+import Shapes from '../../shapes';
+declare type Mixin = typeof Mixin;
+declare namespace Mixin {
     type Attrs<T extends {
         _attrs: {};
     }> = T['_attrs'];
@@ -43,5 +47,9 @@ declare namespace Attr {
         <T extends {
             _attrs: {};
         }, K extends keyof Attrs<T>>(this: T, name: K, value: Attrs<T>[K]): void;
+        <T extends Shapes.ShapeType>(): Shapes.Attrs<T>;
+        <T extends Shapes.ShapeType, K extends keyof Shapes.Attrs<T>>(name: K): Shapes.Attrs<T>[K];
+        <T extends Shapes.ShapeType>(values: Partial<Shapes.Attrs<T>>): void;
+        <T extends Shapes.ShapeType, K extends keyof Shapes.Attrs<T>>(name: K, value: Shapes.Attrs<T>[K]): void;
     }
 }

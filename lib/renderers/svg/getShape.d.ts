@@ -1,2 +1,2 @@
-declare const _default: (x: any, y: any, e: any) => any;
+declare const _default: (x: number, y: number, e: Event) => any;
 export = _default;

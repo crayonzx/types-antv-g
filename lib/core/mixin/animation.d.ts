@@ -1,4 +1,4 @@
-declare const AnimateMixin: {
+declare const Mixin: {
     /**
      * 执行动画
      * @param  {Object}   toProps  动画最终状态
@@ -7,13 +7,14 @@ declare const AnimateMixin: {
      * @param  {Function} callback 动画执行后的回调
      * @param  {Number}   delay    动画延迟时间
      */
-    animate: AnimateMixin.IAnimate;
+    animate: Mixin.IAnimate;
     stopAnimate(): void;
     pauseAnimate(): any;
     resumeAnimate(): any;
 };
-export = AnimateMixin;
-declare namespace AnimateMixin {
+export = Mixin;
+declare type Mixin = typeof Mixin;
+declare namespace Mixin {
     interface IProps {
         transform: any;
         rotate: any;

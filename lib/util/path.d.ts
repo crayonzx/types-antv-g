@@ -1,11 +1,16 @@
 /// <reference types="@antv/util" />
+declare function parsePathString(pathString: Common.SVGPathOrStr): Common.SVGPath;
+declare function catmullRom2bezier(crp: number[], z: boolean): Common.SVGPath;
+declare function pathToAbsolute(pathArray: Common.SVGPathOrStr): Common.SVGPath;
+declare function pathTocurve(path: Common.SVGPathOrStr, path2?: Common.SVGPathOrStr): Common.SVGPath;
+declare function rectPath(x: number, y: number, w: number, h: number, r?: number): Common.SVGPath;
 declare const _default: {
-    parsePathString: (pathString: Common.SVGPathOrStr) => (["m" | "M", number, number] | ["L" | "l", number, number] | ["H" | "h", number] | ["V" | "v", number] | ["C" | "c", number, number, number, number, number, number] | ["s" | "S", number, number, number, number] | ["q" | "Q", number, number, number, number] | ["t" | "T", number, number] | ["a" | "A", number, number, number, number, number, number, number] | ["Z" | "z"])[];
+    parsePathString: typeof parsePathString;
     parsePathArray: (path: []) => string;
-    pathTocurve: (path: Common.SVGPathOrStr, path2?: Common.SVGPathOrStr) => (["m" | "M", number, number] | ["L" | "l", number, number] | ["H" | "h", number] | ["V" | "v", number] | ["C" | "c", number, number, number, number, number, number] | ["s" | "S", number, number, number, number] | ["q" | "Q", number, number, number, number] | ["t" | "T", number, number] | ["a" | "A", number, number, number, number, number, number, number] | ["Z" | "z"])[];
-    pathToAbsolute: (pathArray: Common.SVGPathOrStr) => (["m" | "M", number, number] | ["L" | "l", number, number] | ["H" | "h", number] | ["V" | "v", number] | ["C" | "c", number, number, number, number, number, number] | ["s" | "S", number, number, number, number] | ["q" | "Q", number, number, number, number] | ["t" | "T", number, number] | ["a" | "A", number, number, number, number, number, number, number] | ["Z" | "z"])[];
-    catmullRomToBezier: (crp: number[], z: boolean) => (["m" | "M", number, number] | ["L" | "l", number, number] | ["H" | "h", number] | ["V" | "v", number] | ["C" | "c", number, number, number, number, number, number] | ["s" | "S", number, number, number, number] | ["q" | "Q", number, number, number, number] | ["t" | "T", number, number] | ["a" | "A", number, number, number, number, number, number, number] | ["Z" | "z"])[];
-    rectPath: (x: number, y: number, w: number, h: number, r?: number) => (["m" | "M", number, number] | ["L" | "l", number, number] | ["H" | "h", number] | ["V" | "v", number] | ["C" | "c", number, number, number, number, number, number] | ["s" | "S", number, number, number, number] | ["q" | "Q", number, number, number, number] | ["t" | "T", number, number] | ["a" | "A", number, number, number, number, number, number, number] | ["Z" | "z"])[];
+    pathTocurve: typeof pathTocurve;
+    pathToAbsolute: typeof pathToAbsolute;
+    catmullRomToBezier: typeof catmullRom2bezier;
+    rectPath: typeof rectPath;
     fillPath: (source: any, target: any) => any;
     fillPathByDiff: (source: any, target: any) => any;
     formatPath: (fromPath: any, toPath: any) => any;

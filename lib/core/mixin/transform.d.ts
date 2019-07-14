@@ -1,11 +1,11 @@
-declare const _default: {
+declare const Mixin: {
     initTransform(): void;
     resetMatrix(): void;
-    translate(tx: any, ty: any): any;
-    rotate(radian: any): any;
+    translate<T>(this: T, tx: number, ty: number): T;
+    rotate<T>(this: T, radian: number): T;
     scale(s1: any, s2: any): any;
-    rotateAtStart(rotate: any): any;
-    move(x: number, y: number): any;
+    rotateAtStart<T>(this: T, rotate: number): T;
+    move<T>(this: T, x: number, y: number): T;
     transform(ts: any): any;
     setTransform(ts: any): any;
     getMatrix(): any;
@@ -21,4 +21,5 @@ declare const _default: {
     invert(v: any): any;
     resetTransform(context: any): void;
 };
-export = _default;
+export = Mixin;
+declare type Mixin = typeof Mixin;

@@ -1,4 +1,5 @@
-declare const Timeline1: (new (canvas: any) => {} & {
+declare class Timeline {
+    constructor(canvas: any);
     initTimer(): void;
     addAnimator(shape: any): void;
     removeAnimator(index: any): void;
@@ -6,7 +7,5 @@ declare const Timeline1: (new (canvas: any) => {} & {
     stop(): void;
     stopAllAnimations(): void;
     getTime(): any;
-}) & {};
-declare class Timeline extends Timeline1 {
 }
 export = Timeline;

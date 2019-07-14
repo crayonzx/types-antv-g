@@ -1,12 +1,11 @@
-declare const EventEmitter1: (new () => {} & {
-    on(evt: any, callback: any, one: any): any;
-    one(evt: any, callback: any): any;
-    emit(evt: any): void;
+declare class EventEmitter {
+    on(evt: string, callback: Callback, one?: boolean): this;
+    one(evt: string, callback: Callback): this;
+    emit(evt: string): void;
     trigger(): void;
-    off(evt: any, callback: any): any;
-    removeEvent(evt: any): any;
+    off(evt: string, callback: Callback): this;
+    removeEvent(evt: string): this;
     _getEvents(): any;
-}) & {};
-declare class EventEmitter extends EventEmitter1 {
 }
 export = EventEmitter;
+declare type Callback = (...args: any[]) => any;

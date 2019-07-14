@@ -1,155 +1,88 @@
 /// <reference types="@antv/util" />
 import Element = require('./element');
-declare const Group2: (new (cfg?: Partial<{
-    id: number;
-    zIndex: number;
-    canvas: any;
-    parent: any;
-    capture: boolean;
-    context: any;
-    visible: boolean;
-    destroyed: boolean;
-}>) => {
-    show: () => any;
-    hide: () => any;
-    remove: (destroy?: boolean, delayRemove?: boolean) => any;
-    transform: (ts: any) => any;
-    rotate: (radian: any) => any;
-    on: (evt: any, callback: any, one: any) => any;
-    one: (evt: any, callback: any) => any;
-    emit: ((evt: any) => void) & ((evt: any, e: any) => void);
-    trigger: () => void;
-    off: (evt: any, callback: any) => any;
-    removeEvent: (evt: any) => any;
-    _getEvents: () => any;
-    initAttrs: (attrs: any) => any;
-    getDefaultAttrs: () => {};
-    attr: import("./mixin/attribute").IAttr;
-    _setAttr: (name: any, value: any) => void;
-    clearBBox: () => void;
-    hasFill: () => any;
-    hasStroke: () => any;
-    _setClip: (item: any) => void;
-    animate: import("./mixin/animation").IAnimate;
-    stopAnimate: () => void;
-    pauseAnimate: () => any;
-    resumeAnimate: () => any;
-    initTransform: () => void;
-    resetMatrix: () => void;
-    translate: (tx: any, ty: any) => any;
-    scale: (s1: any, s2: any) => any;
-    rotateAtStart: (rotate: any) => any;
-    move: (x: number, y: number) => any;
-    setTransform: (ts: any) => any;
-    getMatrix: () => any;
-    setMatrix: (m: any) => any;
-    apply: (v: any, root: any) => any;
-    _getMatrixByRoot: (root: any) => number[];
-    getTotalMatrix: () => any;
-    invert: (v: any) => any;
-    resetTransform: (context: any) => void;
-    init: () => void;
-    getParent: () => any;
-    set: Element.ISet;
-    setSilent: (name: any, value: any) => void;
-    get: Element.IGet;
-    toFront: () => void;
-    toBack: () => void;
-    _beforeSetZIndex: (zIndex: number) => number;
-    _setAttrs: (attrs: any) => any;
-    setZIndex: (zIndex: number) => any;
-    _cfg: {
-        id: number;
-        zIndex: number;
-        canvas: any;
-        parent: any;
-        capture: boolean;
-        context: any;
-        visible: boolean;
-        destroyed: boolean;
+declare class Group extends Element {
+    constructor(cfg?: Partial<Group.CFG>);
+    static superclass: Element & {
+        prototype: Element;
+        constructor: typeof Element;
     };
-} & {
-    isGroup: boolean;
-    type: string;
-    canFill: boolean;
-    canStroke: boolean;
+    isGroup: true;
+    type: 'group';
+    canFill: true;
+    canStroke: true;
     getDefaultCfg(): {};
     _beforeRenderUI(): void;
     _renderUI(): void;
     _bindUI(): void;
-    addShape(type: any, cfg: any): any;
+    addShape: Group.IAddShape;
     /** 添加图组
      * @param  {Function|Object|undefined} param 图组类
      * @param  {Object} cfg 配置项
      * @return {Object} rst 图组
      */
-    addGroup(param: any, cfg: any): any;
+    addGroup: Group.IAddGroup;
     /** 绘制背景
      * @param  {Array} padding 内边距
      * @param  {Attrs} attrs 图形属性
      * @param  {Shape} backShape 背景图形
      * @return {Object} 背景层对象
      */
-    renderBack(padding: number[], attrs: any): any;
-    removeChild(item: any, destroy: any): any;
+    renderBack(padding: number[], attrs?: Partial<Rect['_attrs']>): Rect;
+    removeChild(item?: Group.Child | boolean, destroy?: boolean): this;
     /**
      * 向组中添加shape或者group
      * @param {Object} items 图形或者分组
      * @return {Object} group 本尊
      */
-    add(items: any): any;
+    add(items: Group.Child | Group.Child[]): this;
     _setCfgProperty(item: any): void;
-    contain(item: any): boolean;
-    getChildByIndex(index: number): any;
-    getFirst(): any;
-    getLast(): any;
-    getBBox(): Required<Common.BBox>;
+    contain(item: Group.Child | any): item is Group.Child;
+    getChildByIndex(index: number): Group.Child;
+    getFirst(): Group.Child;
+    getLast(): Group.Child;
+    getBBox(): Common.BBox;
     getCount(): number;
-    sort(): any;
-    findById(id: any): any;
+    sort(): this;
+    findById(id: string): Group.Child | null;
     /**
      * 根据查找函数查找分组或者图形
      * @param  {Function} fn 匹配函数
      * @return {Canvas.Base} 分组或者图形
      */
-    find(fn: any): any;
+    find(fn: string | ((item: Group.Child) => unknown)): Group.Child | null;
     /**
      * @param  {Function} fn filter mathod
      * @return {Array} all the matching shapes and groups
      */
-    findAll(fn: any): any[];
+    findAll(fn: (item: Group.Child) => unknown): Group.Child[];
     /**
      * @Deprecated
      * @param  {Function} fn filter method
      * @return {Object} found shape or group
      */
-    findBy(fn: any): any;
+    findBy(fn: (item: Group.Child) => unknown): Group.Child | null;
     /**
      * @Deprecated
      * @param  {Function} fn filter mathod
      * @return {Array} all the matching shapes and groups
      */
-    findAllBy(fn: any): any[];
-    getShape(x: number, y: number): any;
+    findAllBy(fn: (item: Group.Child) => unknown): Group.Child[];
+    getShape(x: number, y: number): Shapes.Base;
     clearTotalMatrix(): void;
-    clear(delayRemove: any): any;
+    clear(delayRemove?: boolean): this;
     destroy(): void;
     clone(): any;
-}) & {
-    superclass: typeof Element;
-};
-declare class Group extends Group2 {
-    addShape: Group.IAddShape;
-    addGroup: Group.IAddGroup;
 }
 export = Group;
-import GShapes from '../shape';
+import Shapes from '../shapes';
 import Common from '../common';
+import Rect from '../shapes/rect';
 declare namespace Group {
     type CFG = Element.CFG;
-    type IAddShape = <T extends GShapes.ShapeType>(type: T, cfg: {
-        attrs: Partial<GShapes.Attrs<T>>;
-    } & Partial<Group.CFG>) => GShapes.Shape<T>;
+    type Child = Group | Shapes.Base;
+    type IAddShape = <T extends Shapes.ShapeType>(type: T, cfg?: {
+        attrs?: Partial<Shapes.Attrs<T>>;
+    } & Partial<Group.CFG>) => Shapes.Shape<T>;
     interface IAddGroup {
         (cfg?: Partial<Group.CFG>): Group;
         (param: new (...args: any[]) => any, cfg?: Partial<Group.CFG>): Group;

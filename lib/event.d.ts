@@ -1,10 +1,9 @@
-declare const Event1: (new (type: any, event: any, bubbles: any, cancelable: any) => {} & {
+declare class Event {
+    constructor(type: any, event: any, bubbles: any, cancelable: any);
     preventDefault(): void;
     stopPropagation(): void;
     remove(): void;
-    clone(): any;
+    clone(): this;
     toString(): string;
-}) & {};
-declare class Event extends Event1 {
 }
 export = Event;

@@ -1,9 +1,8 @@
-declare const PathSegment1: (new (item: any, preSegment: any, isLast: any) => {} & {
+declare class PathSegment {
+    constructor(item: any, preSegment: any, isLast: any);
     init(item: any, preSegment: any): void;
-    isInside(x: any, y: any, lineWidth: any): boolean;
+    isInside(x: number, y: number, lineWidth: number): boolean;
     draw(context: any): void;
-    getBBox(lineWidth: any): void;
-}) & {};
-declare class PathSegment extends PathSegment1 {
+    getBBox(lineWidth: number): void;
 }
 export = PathSegment;

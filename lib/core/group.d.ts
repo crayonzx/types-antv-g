@@ -78,7 +78,9 @@ import Shapes from '../shapes';
 import Common from '../common';
 import Rect from '../shapes/rect';
 declare namespace Group {
-    type CFG = Element.CFG;
+    type CFG = Element.CFG & {
+        children: Child[];
+    };
     type Child = Group | Shapes.Base;
     type IAddShape = <T extends Shapes.ShapeType>(type: T, cfg?: {
         attrs?: Partial<Shapes.Attrs<T>>;

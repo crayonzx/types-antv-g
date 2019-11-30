@@ -4,7 +4,11 @@ declare class Group extends Element {
     constructor(cfg?: Partial<Group.CFG>);
     static superclass: Element & {
         prototype: Element;
-        constructor: typeof Element;
+        constructor: typeof Element; /** 添加图组
+         * @param  {Function|Object|undefined} param 图组类
+         * @param  {Object} cfg 配置项
+         * @return {Object} rst 图组
+         */
     };
     isGroup: true;
     type: 'group';

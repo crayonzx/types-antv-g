@@ -34,7 +34,7 @@ declare namespace Shape {
     type Base = import('../core/shape');
     type ShapeMap = ShapeTypesMap;
     type ShapeType = keyof ShapeMap;
-    type Attrs<T extends ShapeType | 'base' = ShapeType> = T extends ShapeType ? ShapeMap[T]['_attrs'] : Base['_attrs'];
+    type Attrs<T extends ShapeType | 'base' = ShapeType> = T extends ShapeType ? Partial<ShapeMap[T]['_attrs']> : Partial<Base['_attrs']>;
     type Shape<T extends ShapeType | 'base' = ShapeType> = T extends ShapeType ? ShapeMap[T] : Base;
 }
 declare type Shape = Shape.Base;
